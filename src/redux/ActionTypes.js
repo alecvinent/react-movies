@@ -1,0 +1,4 @@
+// MOVIES
+export const MOVIES_LOADING = 'MOVIES_LOADING';
+export const MOVIES_ADD = 'MOVIES_ADD';
+export const MOVIES_FAILED = 'MOVIES_FAILED';
