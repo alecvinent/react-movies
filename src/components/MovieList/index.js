@@ -3,15 +3,15 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import InfoIcon from '@material-ui/icons/Info';
-
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 
-import {IMG_URL} from "../../shared/baseUrl";
-import {useStyles} from "../Utils";
+import {MOVIE_API_IMG_URL} from "../../shared/baseUrl";
+import {parseVote, useStyles} from "../Utils";
+import SimpleRating from "../Rating";
 
 const MovieList = ({movies}) => {
     const classes = useStyles();
@@ -23,21 +23,25 @@ const MovieList = ({movies}) => {
                     <Link to={"/movies/" + movie.id} title="Detalles">
                         <CardMedia
                             className={classes.cardMedia}
-                            image={IMG_URL + movie.poster_path}
+                            image={MOVIE_API_IMG_URL + movie.poster_path}
                             title={movie.title}
                         />
                     </Link>
                     <CardContent className={classes.cardContent}>
                         <Typography gutterBottom variant="h5" component="h2">
-                            {movie.title}
+                            {movie.title} ({new Date(movie.release_date).getFullYear()})
                         </Typography>
                         <Typography>
-                            {movie.overview}
+                            {movie.overview.substring(0, 200) + "..."}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small" color="primary" startIcon={<InfoIcon/>}>
-                            <Link to={"/movies/" + movie.id} title="Detalles">Ver Información</Link>
+                    <CardActions disableSpacing className={classes.cardActions}>
+                        <Button size="small" color="primary" startIcon={<InfoIcon/>} className={classes.button_more}>
+                            <Link className={classes.link1} to={"/movies/" + movie.id} title="Detalles">Ver más</Link>
+                        </Button>
+                        <Button size="small" color="primary" className={classes.votePosition}>
+                            Votos:
+                            <SimpleRating key={movie.id} rate={parseVote(movie.vote_average)} />
                         </Button>
                     </CardActions>
                 </Card>
@@ -46,4 +50,4 @@ const MovieList = ({movies}) => {
 
     return listado;
 }
-export default MovieList
+export default MovieList;

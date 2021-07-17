@@ -8,7 +8,7 @@ export const fetchPopularMovies = () => async (dispatch) => {
 
     dispatch(moviesLoading());
 
-    return fetch(MOVIE_API_POPULAR_MOVIES)
+    return await fetch(MOVIE_API_POPULAR_MOVIES)
         .then(response => {
                 if (response.ok) {
                     return response;
@@ -31,7 +31,7 @@ export const fetchPopularMovies = () => async (dispatch) => {
 
 export const fetchMovieDetails = ({movie_id}) => async (dispatch) => {
     console.log('fetchMovieDetails movieID: ', movie_id);
-    const url = MOVIE_API_MOVIE_DETAILS + '/503736';
+    const url = MOVIE_API_MOVIE_DETAILS + '/' + movie_id;
     console.log('url: ', url);
 
     dispatch(moviesLoading());
@@ -73,3 +73,7 @@ export const moviesFailed = (errmess) => ({
     payload: errmess
 });
 
+// *********************************
+export const postRating = () => {
+
+};

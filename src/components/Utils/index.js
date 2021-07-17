@@ -3,6 +3,15 @@ import {makeStyles} from "@material-ui/core/styles";
 import fetch from "cross-fetch";
 
 export const useStyles = makeStyles((theme) => ({
+    appBar: {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+    },
+    toolbar: {
+        flexWrap: 'wrap',
+    },
+    toolbarTitle: {
+        flexGrow: 1,
+    },
     icon: {
         marginRight: theme.spacing(2),
     },
@@ -40,6 +49,29 @@ export const useStyles = makeStyles((theme) => ({
     inline: {
         display: 'inline',
     },
+    link: {
+        margin: theme.spacing(1, 1.5),
+        textDecoration: "none"
+    },
+    link1: {
+        textDecoration: "none"
+    },
+    cardActions: {
+        justifyContent: "center",
+        alignItems: "flex-start",
+        flexDirection: "row",
+        width: '100%'
+    },
+    button_more: {
+        alignSelf: "center",
+        justifySelf: "flex-start",
+        marginRight:"auto"
+    },
+    votePosition: {
+        alignSelf: "center",
+        justifySelf: "flex-end",
+        marginLeft: "auto"
+    }
 }));
 
 // https://stackoverflow.com/a/39835908/7721297
@@ -60,8 +92,7 @@ export const useFetch = (url, options) => {
                 setResponse(json);
             } catch (error) {
                 setError(error);
-            }
-            finally {
+            } finally {
                 setLoading(false);
             }
         };
@@ -69,3 +100,12 @@ export const useFetch = (url, options) => {
     }, [options, url]);
     return {response, error, loading};
 };
+
+//
+export const parseVote = (vote) => {
+    return vote > 0 ? vote / 2 : 0;
+}
+
+export const parseVote2Post = (vote) => {
+    return vote > 0 ? vote * 2 : 0;
+}
