@@ -21,7 +21,7 @@ export const isAuthenticated = () => {
 };
 export const GetUserdata = () => {
     const isLogin = isAuthenticated();
-    if (!isLogin) throw Error('No ha iniciado sesión');
+    if (!isLogin) return {};
 
     const token = sessionStorage.getItem('token');
     return verify(token, APP_SECRET_KEY);

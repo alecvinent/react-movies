@@ -18,7 +18,6 @@ import { v4 as uuidv4 } from 'uuid';
 const AddReview = ({movie}) => {
     const [open, setOpen] = React.useState(false);
     const isLogin = isAuthenticated();
-    const user = GetUserdata();
 
     const handleClose = () => {
         setOpen(false);
@@ -29,6 +28,8 @@ const AddReview = ({movie}) => {
     }
 
     const handleSubmit = (values) => {
+        const user = GetUserdata();
+
         let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
         const fecha = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
         let user_name = user.user_id.split('@');

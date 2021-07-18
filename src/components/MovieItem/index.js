@@ -18,6 +18,7 @@ import SimpleRating from "../Rating";
 import {GetUserdata, isAuthenticated} from "../../services/auth/authentication";
 import fetch from "cross-fetch";
 import Alert from "@material-ui/lab/Alert";
+import LazyLoad from 'react-lazyload';
 
 
 const RateForm = ({movie}) => {
@@ -139,11 +140,13 @@ const MovieItem = ({movieID}) => {
                 <Grid item xs={12} sm={12} md={12}>
                     <Card className={classes.card}>
                         {movie && (
+                            <LazyLoad height={200}>
                             <CardMedia
                                 className={classes.cardMedia}
                                 image={MOVIE_API_IMG_URL + movie.poster_path}
                                 title={movie.title}
                             />
+                            </LazyLoad>
                         )}
                         <CardContent className={classes.cardContent}>
                             {loading && (

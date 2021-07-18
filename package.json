@@ -12,10 +12,12 @@
     "bcrypt": "^5.0.1",
     "cross-fetch": "^3.1.4",
     "formik": "^2.2.9",
+    "gzipper": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-lazyload": "^3.2.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -30,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && gzipper compress --verbose ./build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
